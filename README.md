@@ -7,8 +7,8 @@
 1. Клонируйте репозиторий:
 
 ```powershell
-git clone https://github.com/<ваш-пользователь>/<имя-репозитория>.git
-cd <имя-репозитория>
+git clone https://github.com/Ralifgrannik/cashflow.git
+cd cashflow
 ```
 
 2. Создайте виртуальное окружение и активируйте его:
@@ -79,7 +79,3 @@ python manage.py createsuperuser
 - `dds/views.py` — представления со всеми CRUD-операциями.
 - `dds/templates/` — HTML-шаблоны интерфейса.
 - `static/dds/dynamic_selects.js` — JavaScript для зависимых выпадающих списков.
-
-## Контакт
-
-Если нужно, добавьте ссылку на GitHub или другой источник. Сейчас инструкция готова для локального запуска из репозитория.
