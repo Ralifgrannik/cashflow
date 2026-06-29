@@ -1,0 +1,44 @@
+{% extends 'dds/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Статусы</h1>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-primary" type="submit">Добавить статус</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-sm">
+                    <thead>
+                        <tr><th>Название</th><th></th></tr>
+                    </thead>
+                    <tbody>
+                        {% for status in statuses %}
+                            <tr>
+                                <td>{{ status.name }}</td>
+                                <td class="text-end">
+                                    <a class="btn btn-sm btn-outline-primary" href="{% url 'edit_status' status.pk %}">Изменить</a>
+                                    <a class="btn btn-sm btn-outline-danger" href="{% url 'delete_status' status.pk %}">Удалить</a>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr><td colspan="2">Статусов нет.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

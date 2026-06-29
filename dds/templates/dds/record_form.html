@@ -1,0 +1,61 @@
+{% extends 'dds/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>{{ title }}</h1>
+    <a class="btn btn-secondary" href="{% url 'record_list' %}">К списку</a>
+</div>
+<form method="post" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+    {% endif %}
+    <div class="row g-3">
+        <div class="col-md-3">
+            <label class="form-label" for="id_date">Дата</label>
+            {{ form.date }}
+            {{ form.date.errors }}
+        </div>
+        <div class="col-md-3">
+            <label class="form-label" for="id_status">Статус</label>
+            {{ form.status }}
+            {{ form.status.errors }}
+        </div>
+        <div class="col-md-3">
+            <label class="form-label" for="id_type">Тип</label>
+            {{ form.type }}
+            {{ form.type.errors }}
+        </div>
+        <div class="col-md-3">
+            <label class="form-label" for="id_amount">Сумма</label>
+            {{ form.amount }}
+            {{ form.amount.errors }}
+        </div>
+        <div class="col-md-6">
+            <label class="form-label" for="id_category">Категория</label>
+            {{ form.category }}
+            {% if form.category.errors %}
+                <div class="invalid-feedback d-block">{{ form.category.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <label class="form-label" for="id_subcategory">Подкатегория</label>
+            {{ form.subcategory }}
+            {% if form.subcategory.errors %}
+                <div class="invalid-feedback d-block">{{ form.subcategory.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="col-12">
+            <label class="form-label" for="id_comment">Комментарий (необязательно)</label>
+            {{ form.comment }}
+            {{ form.comment.errors }}
+        </div>
+        <div class="col-12 text-end">
+            <button class="btn btn-primary" type="submit">Сохранить</button>
+            <a class="btn btn-secondary" href="{% url 'record_list' %}">Отмена</a>
+        </div>
+    </div>
+</form>
+<script src="{% static 'dds/dynamic_selects.js' %}"></script>
+{% endblock %}
